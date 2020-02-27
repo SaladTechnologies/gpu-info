@@ -1,25 +1,46 @@
 {
   "name": "@saladtech/gpu-info",
   "version": "0.1.0",
-  "author": "Salad Technology <dev@salad.io>",
-  "homepage": "https://www.salad.io/",
-  "license": "MIT",
-  "main": "index.js",
-  "gypfile": true,
-  "engineStrict": true,
-  "engines": {
-    "node": "12.8.1",
-    "yarn": ">=1.10.0"
+  "description": "A native module that provides GPU information",
+  "homepage": "https://www.salad.io",
+  "bugs": {
+    "url": "https://feedback.salad.io/bugs",
+    "email": "support@salad.io"
   },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/SaladTechnologies/gpu-info.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Salad Chefs",
+    "email": "dev@salad.io",
+    "url": "https://www.salad.io"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "./docs/**/*",
+    "./prebuilds/**/*",
+    "./index.d.ts",
+    "./index.js"
+  ],
   "scripts": {
+    "clean": "rimraf build",
     "install": "node-gyp-build",
     "prebuild": "prebuildify --napi"
   },
-  "devDependencies": {
-    "prebuildify": "^3.0.4"
-  },
   "dependencies": {
-    "node-addon-api": "^2.0.0",
-    "node-gyp-build": "^4.2.0"
+    "node-addon-api": "2.0.0",
+    "node-gyp-build": "4.2.0"
+  },
+  "devDependencies": {
+    "node-gyp": "6.1.0",
+    "prebuildify": "3.0.4",
+    "rimraf": "3.0.2"
+  },
+  "gypfile": true,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
