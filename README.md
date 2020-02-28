@@ -1,32 +1,21 @@
 # gpu-info
-A useful library that provides GPU info (it's in the name!)
 
-The purpose of this library is to fetch GPU information that are not accessible through pure JS.
+This library fetches Windows GPU information not accessible through pure JavaScript.
 
-It is not intended to build/run this library on any other platform that Windows. 
-The library is build and integrated to Node.js with [node-gyp](https://github.com/nodejs/node-gyp).
-
-## Development
-
-Windows users need to have the msvc (Visual Studio 2017) build tools set up on their system.
-
-```shell
-npm i -g node-gyp
-yarn add node-addon-api
-npm i -g windows-build-tools --vs2017
-npm config set msvs_version 2017
-
-# Driver kit Import path in 'C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/km'
-choco install windowsdriverkit10 --version 10.0.17763
-```
+- [Usage](#usage)
+- [API](#api)
+  - [API interface](#api-interface)
+  - [Implemented data points](#implemented-data-points)
+- [Development](#development)
+  - [Prerequisites](#prerequisites)
 
 ## Usage
 
-The C++ code can be compiled into the `<package>/build/Release/gpu-metric.node` file.
-This file can be imported through:
+This library is only supported on 64-bit versions of Windows 10.
 
 ```js
-const addon = require('<path to>/build/Release/gpu-info.node');
+const windowsGpuInfo = require('@saladtech/gpu-info');
+...
 ```
 
 ## API
@@ -36,7 +25,7 @@ const addon = require('<path to>/build/Release/gpu-info.node');
 Currently, there is no real interface defined. Once the library is called an
 object with all information gets returned. The call overhead is small, thus the
 library's intended use is to pull it frequently:
-    
+
 #### Implemented data points
 
 It is planned to get following data points from all GPUs:
@@ -52,3 +41,28 @@ GPU Mem Clock                   |❌            |❌    |❌
 GPU Temp                        |❌            |❌    |❌
 GPU Fan Speed                   |❌            |❌    |❌
 GPU Usage                       |❌            |❌    |❌
+
+## Development
+
+This library can only be built on 64-bit versions of Windows 10.
+
+### Prerequisites
+
+Download and install the latest version of Visual Studio 2019 (the Community Edition is acceptable) or the [Build Tools for Visual Studio 2019](https://visualstudio.microsoft.com/downloads/).
+
+In the Visual Studio Installer, ensure the "C++ build tools" workload is selected.
+
+![Screenshot of the C++ build tools workload selection](./docs/vs-build-tools-workloads.png)
+
+Additionally, ensure the latest Visual C++ compiler and Windows SDK components are selected.
+
+![Screenshot of the Visual C++ compiler and Windows SDK component selection](./docs/vs-build-tools-components.png)
+
+Download and install the latest version of [Python 3 (64-bit)](https://www.python.org/downloads/).
+
+TODO: Review the following:
+
+```shell
+# Driver kit Import path in 'C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/km'
+choco install windowsdriverkit10 --version 10.0.17763
+```

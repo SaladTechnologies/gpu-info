@@ -2,16 +2,16 @@
     "targets": [{
         "target_name": "gpu-info",
         "conditions": [
-      		['OS == "win"', {
+            ['OS == "win"', {
                 "cflags!": [ "-fno-exceptions" ],
                 "cflags_cc!": [ "-fno-exceptions" ],
                 "sources": [
-            	    "cppsrc/main.cpp",
-			        "cppsrc/gpu.h",
-				    "cppsrc/gpu.c"
+                    "cppsrc/main.cpp",
+                    "cppsrc/gpu.h",
+                    "cppsrc/gpu.c"
                 ],
                 'include_dirs': [
-	    	        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/km/",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/km/",
                     "<!@(node -p \"require('node-addon-api').include\")"
                 ],
                 "libraries": [
@@ -32,8 +32,8 @@
                         "msvs_disabled_warnings": [ 4275 ]
                     }
                 }
- 		    }, {
- 		        # Drop other targets
+            }, {
+                # Drop other targets
                 "type": "none"
             }]]
     }]
